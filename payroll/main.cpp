@@ -5,13 +5,13 @@
 #include <limits>
 using namespace std;
 
-unsigned getUnsigned(string);
+int getInt(string);
 double getDouble(string);
 
 int main()
 {
 	unsigned empID[7] = { 5658845, 4520125, 7895122, 8777541, 8451277, 1302850, 7580489 };
-	unsigned hours[7];
+	int hours[7];
 	double payRate[7];
 	double   wages[7];
 
@@ -19,7 +19,7 @@ int main()
 	{
 		stringstream prompt;
 		prompt << "Please enter the hours worked by employee " << empID[i] << "\n >> ";
-		hours[i] = getUnsigned(prompt.str());
+		hours[i] = getInt(prompt.str());
 		prompt.str(""); // clear the stream
 		prompt << "Please enter the hourly pay rate for employee " << empID[i] << "\n >> ";
 		payRate[i] = getDouble(prompt.str());
@@ -33,10 +33,10 @@ int main()
 	}
 }
 
-unsigned getUnsigned(string prompt)
+int getInt(string prompt)
 {
-	unsigned input;
-	while (true)
+	int input = -1;
+	while (input < 0)
 	{
 		cout << prompt;
 		cin >> input;
@@ -45,8 +45,8 @@ unsigned getUnsigned(string prompt)
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		}
-		else return input;
 	}
+	return input;
 }
 
 double getDouble(string prompt)
